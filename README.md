@@ -1,8 +1,7 @@
-PULL REQ: https://github.com/yazanbaker94/auth-api/pull/2
+PULL REQ: https://github.com/yazanbaker94/events-app/pull/1
 
-DEPLOYMENT: https://auth-api-yazan-yazan.herokuapp.com/
+DEPLOYMENT: https://github.com/yazanbaker94/events-app/blob/main/README.md
 
-DEPLOYED VERSION ON HEROKU: https://basic-auth-yazann.herokuapp.com/signup
 
 
 
