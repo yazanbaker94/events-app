@@ -1,25 +1,51 @@
 'use strict';
 
 const events = require('../../events');
+const io=require('socket.io-client');
+const HOST=process.env.HOST || 'http://localhost:3000';
+const socket=io.connect(`${HOST}/caps`);
+
 var faker = require('faker');
-events.on('pickup', driverPickedUp);
+
+socket.on('pickedUpDriver', driverPickedUp);
+socket.on('transitDelivery', driverTransit);
+socket.on('deliveredMsg', deliveredMsg)
+
+
 
 function driverPickedUp(payload) {
     setTimeout(function () {
         console.log("DRIVER: picked up ", payload.orderID)
-       
-        console.log("EVENT { event: in transit", )
-        console.log("time: ", faker.datatype.datetime())
-        console.log('payload: ', payload)
-
-        
 
         
     }, 1000);
 
     setTimeout(function () {
      
-    events.emit("delivered", payload)
-    }, 3000);
+        socket.emit("transit", payload)
+    }, 2000);
 }
+function deliveredMsg(payload) {
+
+    console.log("VENDOR: Thank you for delivering", payload.orderID)
+
+
+
+}
+function driverTransit(payload) {
+    setTimeout(function () {
+       
+
+
+        
+
+        
+    }, 2000);
+
+    setTimeout(function () {
+     
+        socket.emit("delivered", payload)
+    }, 2500);
+}
+
 
