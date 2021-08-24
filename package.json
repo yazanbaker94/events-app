@@ -1,0 +1,28 @@
+{
+  "name": "events-app",
+  "version": "1.0.0",
+  "description": "![sockets](sockets.png \"Reverse\")",
+  "main": "caps.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yazanbaker94/events-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yazanbaker94/events-app/issues"
+  },
+  "homepage": "https://github.com/yazanbaker94/events-app#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "faker": "^5.5.3",
+    "jest": "^27.0.6",
+    "socket.io": "^4.1.3",
+    "socket.io-client": "^4.1.3",
+    "supertest": "^6.1.6"
+  }
+}
