@@ -7,45 +7,40 @@ const socket=io.connect(`${HOST}/caps`);
 
 var faker = require('faker');
 
-socket.on('pickedUpDriver', driverPickedUp);
-socket.on('transitDelivery', driverTransit);
-socket.on('deliveredMsg', deliveredMsg)
+// socket.on('pickedUpDriver', driverPickedUp);
+// socket.on('transitDelivery', driverTransit);
+// socket.on('deliveredMsg', deliveredMsg)
+
+
+socket.on("pickup", driverPickedUp);
 
 
 
-function driverPickedUp(payload) {
-    setTimeout(function () {
-        console.log("DRIVER: picked up ", payload.orderID)
+let driver = { clientID: "driver", event: "pickup" };
+socket.emit("get-all", driver);
 
-        
-    }, 1000);
-
-    setTimeout(function () {
-     
-        socket.emit("transit", payload)
-    }, 2000);
-}
-function deliveredMsg(payload) {
-
-    console.log("VENDOR: Thank you for delivering", payload.orderID)
+socket.on("message", (message) => {
+    if (message.payload.event === "pickup") {
+        driverPickedUp(message);
+    }
+  });
 
 
 
-}
-function driverTransit(payload) {
-    setTimeout(function () {
-       
 
+function driverPickedUp(message) {
 
-        
+        console.log(`DRIVER: picked up ${message.payload.payload.orderId}`)
 
-        
-    }, 2000);
+        socket.emit("in-transit", message.payload.payload)
 
-    setTimeout(function () {
-     
-        socket.emit("delivered", payload)
-    }, 2500);
-}
+        console.log(`Driver: delivered up ${message.payload.payload.orderId}`)
+        socket.emit("delivered", message.payload.payload);
+     socket.emit("received", message);
+      
+    }
+
+   
+
 
 
